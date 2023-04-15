@@ -15,6 +15,8 @@ void inicializarArreglo(Tarea **arreglo, int cantidad); //Inicializa en NULL tod
 void cargarTareas(Tarea **arreglo, int cantidad);  
 void controlarTareas(Tarea **arregloPendientes,Tarea **arregloRealizadas, int cantidad);
 void mostrarTareas(Tarea **arreglo, int cantidad);
+void buscarTareaPorID(Tarea **arregloPendientes,Tarea **arregloRealizados, int cantidad );
+void buscarTareaPorPalabra(Tarea **arregloPendientes,Tarea **arregloRealizados, int cantidad  );
 
 
 int main(){
@@ -36,11 +38,17 @@ int main(){
 
     controlarTareas(tareasSolicitadas, tareasRealizadas, cantTareas);  // controlo cual tarea se realizo y cual no
 
+
     printf("----Tareas pendientes ----\n");
     mostrarTareas(tareasSolicitadas, cantTareas);
 
     printf("----Tareas realizadas ----\n");
     mostrarTareas(tareasRealizadas, cantTareas);
+
+
+    buscarTareaPorID(tareasSolicitadas,tareasRealizadas,cantTareas);
+
+    buscarTareaPorPalabra(tareasSolicitadas,tareasRealizadas,cantTareas);
 
 
 
@@ -135,4 +143,66 @@ void mostrarTareas(Tarea **arreglo, int cantidad){
         
     }
     
+}
+
+
+void buscarTareaPorID(Tarea **arregloPendientes,Tarea **arregloRealizados, int cantidad){
+
+    int ID;
+    printf("Ingrese el ID a buscar:");
+    scanf("%d",&ID);
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        
+        if (arregloPendientes[i] != NULL && arregloPendientes[i]->TareaID == ID)
+        {
+            printf("------------------- Tarea Num %d (pendiente) -------------------\n",i+1);
+            printf("ID de la tarea: %d\n",arregloPendientes[i]->TareaID);
+            printf("Descripcion: %s\n",arregloPendientes[i]->Descripcion);
+            printf("Duracion: %d\n",arregloPendientes[i]->Duracion);
+
+        }
+
+        if (arregloRealizados[i] != NULL && arregloRealizados[i]->TareaID == ID)
+        {
+            printf("------------------- Tarea Num %d (Realizado) -------------------\n",i+1);
+            printf("ID de la tarea: %d\n",arregloRealizados[i]->TareaID);
+            printf("Descripcion: %s\n",arregloRealizados[i]->Descripcion);
+            printf("Duracion: %d\n",arregloRealizados[i]->Duracion);
+        }
+        
+        
+    }
+    
+}
+
+void buscarTareaPorPalabra(Tarea **arregloPendientes,Tarea **arregloRealizados, int cantidad ){
+ 
+    char* cadenaAbuscar;
+    printf("Ingrese la descripcion a buscar");
+    scanf("%s",cadenaAbuscar);
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        
+        if (arregloPendientes[i] != NULL && strstr(arregloPendientes[i]->Descripcion,cadenaAbuscar) != NULL)
+        {
+            printf("------------------- Tarea Num %d (pendiente) -------------------\n",i+1);
+            printf("ID de la tarea: %d\n",arregloPendientes[i]->TareaID);
+            printf("Descripcion: %s\n",arregloPendientes[i]->Descripcion);
+            printf("Duracion: %d\n",arregloPendientes[i]->Duracion);
+
+        }
+
+        if (arregloRealizados[i] != NULL && strstr(arregloRealizados[i]->Descripcion,cadenaAbuscar) != NULL)
+        {
+            printf("------------------- Tarea Num %d (Realizado) -------------------\n",i+1);
+            printf("ID de la tarea: %d\n",arregloRealizados[i]->TareaID);
+            printf("Descripcion: %s\n",arregloRealizados[i]->Descripcion);
+            printf("Duracion: %d\n",arregloRealizados[i]->Duracion);
+        }
+        
+        
+    }
 }
