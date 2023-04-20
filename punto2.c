@@ -17,6 +17,7 @@ void controlarTareas(Tarea **arregloPendientes,Tarea **arregloRealizadas, int ca
 void mostrarTareas(Tarea **arreglo, int cantidad);
 void buscarTareaPorID(Tarea **arregloPendientes,Tarea **arregloRealizados, int cantidad );
 void buscarTareaPorPalabra(Tarea **arregloPendientes,Tarea **arregloRealizados, int cantidad  );
+void liberarMemoria(Tarea **arreglo, int cantidad);
 
 
 int main(){
@@ -51,7 +52,7 @@ int main(){
     buscarTareaPorPalabra(tareasSolicitadas,tareasRealizadas,cantTareas);
 
 
-
+    liberarMemoria(tareasSolicitadas,tareasRealizadas);
 
 
 
@@ -205,4 +206,20 @@ void buscarTareaPorPalabra(Tarea **arregloPendientes,Tarea **arregloRealizados, 
         
         
     }
+}
+
+void liberarMemoria(Tarea **arreglo, int cantidad){
+
+    for (int i = 0; i < cantidad; i++)
+    {   
+        if (arreglo[i] != NULL)
+        {
+            free(arreglo[i]->Descripcion);
+        }
+        
+        free(arreglo[i]);
+    }
+
+    free(arreglo);
+    
 }
