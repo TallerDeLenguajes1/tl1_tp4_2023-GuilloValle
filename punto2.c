@@ -162,6 +162,7 @@ void buscarTareaPorID(Tarea **arregloPendientes,Tarea **arregloRealizados, int c
             printf("ID de la tarea: %d\n",arregloPendientes[i]->TareaID);
             printf("Descripcion: %s\n",arregloPendientes[i]->Descripcion);
             printf("Duracion: %d\n",arregloPendientes[i]->Duracion);
+            break;
 
         }
 
@@ -171,10 +172,14 @@ void buscarTareaPorID(Tarea **arregloPendientes,Tarea **arregloRealizados, int c
             printf("ID de la tarea: %d\n",arregloRealizados[i]->TareaID);
             printf("Descripcion: %s\n",arregloRealizados[i]->Descripcion);
             printf("Duracion: %d\n",arregloRealizados[i]->Duracion);
+            break;
         }
         
         
     }
+
+    printf("No existe ese ID\n");
+    
     
 }
 
