@@ -3,7 +3,7 @@
 #include<string.h>
 #include<time.h>
 
-
+/*------------------------*/
 struct Tarea
 {
     int TareaID;
